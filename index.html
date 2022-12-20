@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="js/echarts.js"></script>
+  </head>
+  <body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main" style="width: 800px;height:600px;"></div>
+    <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var chartDom = document.getElementById('main');
+      var myChart = echarts.init(chartDom);
+      var option;
+      option = {
+        title: {
+          text: '中国戏曲',
+          subtext: "喜欢的年龄段",
+          left: 'center'
+        },
+        legend: {
+          top: 'bottom'
+        },
+        tooltip: {
+          trigger: 'item'
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            mark: { show: true },
+            dataView: { show: true, readOnly: false },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        series: [
+          {
+            
+            type: 'pie',
+            legendhoverlink:true,
+            selectedmode:'single',
+            selectedOffset: 30,
+            radius: [40, 200],
+            center: ['50%', '50%'],
+            roseType: 'area',
+            itemStyle: {
+              borderRadius: 8
+            },
+            data: [
+              { value: 31, name: '90后' },
+              { value: 23, name: '80后' },
+              { value: 15, name: '70后' },
+              { value: 10, name: '00后' },
+              { value: 16, name: '其它' }
+            ],
+          emphasis: {
+            itemstyle: {
+              shadowblur:10,
+              shadowoffsetx:0,
+              shadowcolor:'rgba(0,0,0,0.5)'
+            }
+          }
+        }
+        ]
+      };
+      option && myChart.setOption(option);
+      window.onresize=function(){
+        mychart.resize();
+      }
+    </script>
+  </body>
+</html>
